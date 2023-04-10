@@ -28,14 +28,13 @@ public class StartSceneController : MonoBehaviour
 
     private IEnumerator Start()
     {
-
-        var path = Path.Combine(Application.streamingAssetsPath, $"appParams.xml");
+        // github link config "https://raw.githubusercontent.com/emsmirnov/bodyTracking/main/appParams.xml"
+        var path = "https://raw.githubusercontent.com/emsmirnov/bodyTracking/main/appParams.xml";//Path.Combine(Application.streamingAssetsPath, $"appParams.xml");
         UnityWebRequest www = UnityWebRequest.Get(path);
         yield return www.SendWebRequest();
-//        if (string.IsNullOrEmpty(www.error)) Debug.Log(www.error);
+        //        if (string.IsNullOrEmpty(www.error)) Debug.Log(www.error);
         var data = www.downloadHandler.data;
 
-        BinaryFormatter bf = new BinaryFormatter();
         FileStream file = File.Create(Application.persistentDataPath + "/appParams.xml");
         file.Write(data);
 
@@ -60,7 +59,6 @@ public class StartSceneController : MonoBehaviour
         if (string.IsNullOrEmpty(www.error)) Debug.Log(www.error);
         var data = www.downloadHandler.data;
 
-        BinaryFormatter bf = new BinaryFormatter();
         FileStream file = File.Create(Application.persistentDataPath + "/appParams.xml");
         file.Write(data);
 

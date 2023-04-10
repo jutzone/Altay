@@ -8,10 +8,15 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/StartScene.unity
     guid: 5a7e638368d66404e9c1bb80241efdd1
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/StaticScene.unity
     guid: dfb32a0b6beb9044ba527ebd084ec41e
   - enabled: 1
     path: Assets/Scenes/DynamicScene.unity
     guid: 9fc0d4010bbf28b4594072e72b8655ab
-  m_configObjects: {}
+  - enabled: 1
+    path: Assets/Scenes/ARScene.unity
+    guid: 72503426d9283214e823039476072e1c
+  m_configObjects:
+    UnityEditor.XR.ARCore.ARCoreSettings: {fileID: 11400000, guid: 5c604c027dd405048abff1a8709f480f, type: 2}
+    com.unity.xr.management.loader_settings: {fileID: 11400000, guid: f360759f32735804e9827920a0613676, type: 2}
