@@ -55,6 +55,13 @@ sysinfo.txt
 *.apk
 *.unitypackage
 
+# Videos
+*.mov
+*.mp4
+
+#BigModels
+MNG_1.fbx
+
 # Crashlytics generated file
 crashlytics-build.properties
 

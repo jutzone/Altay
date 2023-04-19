@@ -1,14 +1,13 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
 public class CharactersController : MonoBehaviour
 {
     [SerializeField] private Character[] characters;
-    static UnityEvent onCharacterChanged;
-    private static Character currentCharacter;
-    public static Character CurrentCharacter
+    UnityEvent onMainCharacter;
+    UnityEvent<Character> onAdditionalCharacter;
+    private Character currentCharacter;
+    public Character CurrentCharacter
     {
         get
         {
@@ -16,33 +15,58 @@ public class CharactersController : MonoBehaviour
         }
         set
         {
-            if (value != currentCharacter)
+            if (!value.IsMainCharacter)
             {
-                currentCharacter = value;
-                onCharacterChanged.Invoke();
-                CanChangeCharacter = false;
+                onAdditionalCharacter.Invoke(value);
+            }
+            else
+            {
+                if (value != currentCharacter && CanChangeCharacter)
+                {
+                    currentCharacter = value;
+                    onMainCharacter.Invoke();
+                    CanChangeCharacter = false;
+                }
             }
         }
     }
 
-    public static bool CanChangeCharacter;
-    private void Start()
+    public bool CanChangeCharacter;
+
+    public void Initialize()
     {
-        Initialize();
-    }
-    void Initialize()
-    {
-        onCharacterChanged = new UnityEvent();
-        onCharacterChanged.AddListener(() => setCharacter());
+        Debug.Log("CharacterController init");
+        onMainCharacter = new UnityEvent();
+        onMainCharacter.AddListener(() => setMainCharacter());
+        onAdditionalCharacter = new UnityEvent<Character>();
+        onAdditionalCharacter.AddListener((s) => setAdditionalCharacter(s));
+        foreach (Character character in characters)
+        {
+            character.Initialize();
+            character.OnAnimationCompleted.AddListener((s) =>
+            {
+                Debug.Log(s.IsMainCharacter + " is main");
+                if (s.IsMainCharacter)
+                {
+                    CanChangeCharacter = true;
+                }
+            });
+        }
         CanChangeCharacter = true;
     }
 
-    void setCharacter()
+    void setMainCharacter()
     {
         foreach (Character character in characters)
         {
-            character.Hide();
+            if (character.IsMainCharacter)
+                character.Hide();
         }
         currentCharacter.Reveal();
+    }
+
+    void setAdditionalCharacter(Character character)
+    {
+        character.Reveal();
     }
 }

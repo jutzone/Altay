@@ -7,19 +7,16 @@ public class RaycastController : MonoBehaviour
 {
     [SerializeField] private bool raycastEnabled;
     [SerializeField] private Camera arCamera;
+    [SerializeField] private CharactersController charactersController;
     void Update()
     {
         #region Raycast
-        if (CharactersController.CanChangeCharacter)
+        Vector3 rayOrigin = arCamera.ViewportToWorldPoint(new Vector3(0.5f, 0.5f, 0.0f));
+
+        RaycastHit hitObject;
+        if (Physics.Raycast(rayOrigin, arCamera.transform.forward, out hitObject, 100))
         {
-            Vector3 rayOrigin = arCamera.ViewportToWorldPoint(new Vector3(0.5f, 0.5f, 0.0f));
-
-            RaycastHit hitObject;
-            if (Physics.Raycast(rayOrigin, arCamera.transform.forward, out hitObject, 100))
-            {
-                OnDetected(hitObject.transform.gameObject);
-            }
-
+            OnDetected(hitObject.transform.gameObject);
         }
         #endregion
     }
@@ -27,6 +24,6 @@ public class RaycastController : MonoBehaviour
     void OnDetected(GameObject go)
     {
         if (go.GetComponent<Character>() != null)
-            CharactersController.CurrentCharacter = go.GetComponent<Character>();
+            charactersController.CurrentCharacter = go.GetComponent<Character>();
     }
 }

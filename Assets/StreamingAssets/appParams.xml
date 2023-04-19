@@ -1,26 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <appParams>
-    <show_waiting_screen>0,2</show_waiting_screen>
-    <hide_waiting_screen>0,2</hide_waiting_screen>
-    <show_active_screen>0,2</show_active_screen>
-    <hide_active_screen>0,2</hide_active_screen>
-    <activity_timer_delay>999</activity_timer_delay>
-    <waiting_type>image</waiting_type>
-    <waiting_image_name>image.png</waiting_image_name>
-    <waiting_video_name>waiting_video.mp4</waiting_video_name>
-    <main_video_name>video.mp4</main_video_name>
-    <alpha_video_name>alpha_video.mp4</alpha_video_name>
-    <video_width>1920</video_width>
-    <video_height>1080</video_height>
-    <rotationRate_x>0,1</rotationRate_x>
-    <rotationRate_y>0,1</rotationRate_y>
-    <rotationRate_z>0,1</rotationRate_z>
-    <only_horizontal>false</only_horizontal>
-    <is_static>false</is_static>
-    <min_y>-14</min_y>
-    <max_y>14</max_y>
-    <min_x>-3</min_x>
-    <max_x>3</max_x>
-    <min_z>-8,1</min_z>
-    <max_z>8,1</max_z>
+    <config_timer_delay>4</config_timer_delay>
+    <cube0_x>28</cube0_x>
+    <cube0_y>16</cube0_y>
+    <cube0_z>43</cube0_z>
+    <cube1_x>-18</cube1_x>
+    <cube1_y>95</cube1_y>
+    <cube1_z>4</cube1_z>
+    <cube2_x>12</cube2_x>
+    <cube2_y>49</cube2_y>
+    <cube2_z>-18</cube2_z>
+    <cube0_isMain>true</cube0_isMain>
+    <cube1_isMain>true</cube1_isMain>
+    <cube2_isMain>false</cube2_isMain>
 </appParams>
